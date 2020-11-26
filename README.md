@@ -15,4 +15,4 @@ Use `:h` command to get a list of sequences. Use `SEQUENCE_NAME n` to get the *n
 ## Keyboard Shortcut
  - `^C KeyboardInterrupt`: Interrupt
  - `^D EOFError`: Quit (Not working on Windows)
- - `Up key`: Last execution (Not working on Linux, tested on Windows Anaconda)
+ - `Up key`: Last execution (Not working on Linux, tested on Windows Anaconda)git

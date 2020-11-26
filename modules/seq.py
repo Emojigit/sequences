@@ -21,10 +21,11 @@ def fib(n): # This code is contributed by Saket Modi, https://www.geeksforgeeks.
         return fib(n-1)+fib(n-2)
 
 def fib_exec(n):
+    fn = float(n)
     if n > 30:
         print("Calcuate Fibonacci Sequence needs some times. Please wait...")
     try:
-        return fib(n)
+        return fib(fn)
     except RecursionError:
         return "maximum recursion depth exceeded in comparison! (max:"+str(sys.getrecursionlimit())+")"
 
@@ -86,17 +87,17 @@ helps = {
     "ODD":"Odd numbers",
     "EVEN":"Even numbers",
     "SQUARE":"Square numbers",
-    "SQ":ah("SQ"),
+    "SQ":ah("SQUARE"),
     "TRIANGULAR":"Triangular numbers",
     "TRIAN":ah("TRIANGULAR"),
     "FIB":"Fibonacci sequences",
     "FIBONACCI":ah("FIB"),
     "PENTAGONAL":"Pentagonal numbers",
     "PENT":ah("PENTAGONAL"),
-    "HEX":ah("HEX"),
+    "HEX":ah("HEXAGONAL"),
     "HEXAGONAL":"Hexagonal numbers",
     # "LAZYC":"WIP",
-    # "CATERER":"WIP,
+    # "CATERER":ah("LAZYC"),
     "WDEMLO":"Wonderful Demlo numbers (OEIS A002477)",
     "POW2":"Power of 2 (OEIS A000079)",
     "DIV2":"Dividing by 2"
