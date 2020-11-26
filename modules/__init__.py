@@ -15,5 +15,3 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-def show():
-    print("Sequences  Copyright (C) 2020  Cato Yiu\nThis program comes with ABSOLUTELY NO WARRANTY.\nThis is free software, and you are welcome to redistribute it under certain conditions.]nYou can find the source code at: https://github.com/Emojigit/sequences")
