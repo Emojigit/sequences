@@ -17,6 +17,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 from modules import seq, cpr_note
+import sys
+exit = sys.exit
 cpr_note.show()
 seqs = seq.seqs
 
