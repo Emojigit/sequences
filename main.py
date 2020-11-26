@@ -16,8 +16,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-from modules import seq
-__import__('modules', globals(), locals(), ['cpr_note'], 0).cpr_note.show()
+from modules import seq, cpr_note
+cpr_note.show()
 seqs = seq.seqs
 
 print("Sequence Version alpha 1")
