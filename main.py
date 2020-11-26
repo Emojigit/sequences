@@ -39,6 +39,7 @@ while True:
             print("h == Get this help")
             print("l == see license details")
             print("q == Quit")
+            print("s == settings (Use `:s help` to get all settings)")
             print("Note: all commands have a `:` prefix")
             print("---------------------")
             print("Keyboard Shortcuts:")
@@ -48,6 +49,32 @@ while True:
             print("License under GNU GPLv3, see LICENSE.txt and COPYING.txt in the source code")
         elif command[0] == ":q":
             exit()
+        elif command[0] == ":s":
+            try:
+                args = command[1].split(" ",1)
+                tmp = args[0]
+            except IndexError:
+                print("Mssing args, use `:s help` to see settings")
+                continue
+            if args[0] == "help":
+                print("Subcommands of settings:")
+                print("rl: Set recursion limit")
+                continue
+            try:
+                tmp = args[1]
+            except IndexError:
+                print("Mssing args, use `:s help` to see settings")
+                continue
+            if args[0] == "rl":
+                print("WARNING: CHANGE IT MAY CAUSE A STACK OVERFLOW!")
+                try:
+                    sys.setrecursionlimit(int(args[1]))
+                except ValueError:
+                    print("Arg not int!")
+                except OverflowError:
+                    print("Arg too big!")
+            else:
+                print("Unknown setting")
         elif command[0].startswith(":"):
             print("No such command")
         else:

@@ -1,4 +1,4 @@
-import math
+import math, sys
 mpow = math.pow
 def odd(n):
     return (2*n)-1
@@ -23,7 +23,10 @@ def fib(n): # This code is contributed by Saket Modi, https://www.geeksforgeeks.
 def fib_exec(n):
     if n > 30:
         print("Calcuate Fibonacci Sequence needs some times. Please wait...")
-    return fib(n)
+    try:
+        return fib(n)
+    except RecursionError:
+        return "maximum recursion depth exceeded in comparison! (max:"+str(sys.getrecursionlimit())+")"
 
 def pentagonal(n):
     fn = float(n)
@@ -41,6 +44,21 @@ def wdemlo(n):
     fn = float(n)
     return mpow(((mpow(10,n)-1)/9),2)
 
+def pow2(n):
+    return mpow(n,2)
+
+def div2(n):
+    if n==1:
+        return 1
+    else:
+        return div2(n-1)/2
+
+def div2_exec(n):
+    try:
+        return div2(n)
+    except RecursionError:
+        return "maximum recursion depth exceeded in comparison! (max:"+str(sys.getrecursionlimit())+")"
+
 seqs = {
     "ODD":odd,
     "EVEN":even,
@@ -57,6 +75,8 @@ seqs = {
     # "LAZYC":caterer,
     # "CATERER":caterer,
     "WDEMLO":wdemlo,
+    "POW2":pow2,
+    "DIV2":div2_exec
 }
 
 def ah(s):
@@ -77,5 +97,7 @@ helps = {
     "HEXAGONAL":"Hexagonal numbers",
     # "LAZYC":"WIP",
     # "CATERER":"WIP,
-    "WDEMLO":"Wonderful Demlo numbers",
+    "WDEMLO":"Wonderful Demlo numbers (OEIS A002477)",
+    "POW2":"Power of 2 (OEIS A000079)",
+    "DIV2":"Dividing by 2"
 }
