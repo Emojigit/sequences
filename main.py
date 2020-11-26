@@ -68,6 +68,9 @@ while True:
             if args[0] == "rl":
                 print("WARNING: CHANGE IT MAY CAUSE A STACK OVERFLOW!")
                 try:
+                    if int(args[1]) < 1000:
+                        print("Arg too small!")
+                        continue
                     sys.setrecursionlimit(int(args[1]))
                 except ValueError:
                     print("Arg not int!")
