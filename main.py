@@ -32,7 +32,8 @@ while True:
         elif command[0] == ":h":
             print("List of sequences:")
             for s in seqs:
-                print(s)
+                print(s,end=": ")
+                print(seq.helps[s])
             print("---------------------")
             print("List of commands:")
             print("h == Get this help")
@@ -42,9 +43,9 @@ while True:
             print("---------------------")
             print("Keyboard Shortcuts:")
             print("^C: Interrupt")
-            print("^D: Quit")
+            print("^D: Quit (Not working on windows)")
         elif command[0] == ":l":
-            print("License under GNU GPLv3, see LICENSE.txt and COPYING.txt")
+            print("License under GNU GPLv3, see LICENSE.txt and COPYING.txt in the source code")
         elif command[0] == ":q":
             exit()
         elif command[0].startswith(":"):

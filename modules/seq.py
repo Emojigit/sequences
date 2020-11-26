@@ -1,4 +1,5 @@
 import math
+mpow = math.pow
 def odd(n):
     return (2*n)-1
 
@@ -24,6 +25,22 @@ def fib_exec(n):
         print("Calcuate Fibonacci Sequence needs some times. Please wait...")
     return fib(n)
 
+def pentagonal(n):
+    fn = float(n)
+    return (3*mpow(fn,2)-fn)/(2)
+
+def hexa(n):
+    return n*((2*n)-1)
+
+# def caterer(n): Nedds fix
+#     nf = float(n)
+#     return (mpow(n,2)+n+2)/(2)
+
+def wdemlo(n):
+    # OEIS A002477
+    fn = float(n)
+    return mpow(((mpow(10,n)-1)/9),2)
+
 seqs = {
     "ODD":odd,
     "EVEN":even,
@@ -33,4 +50,32 @@ seqs = {
     "TRIAN":trian,
     "FIB":fib_exec,
     "FIBONACCI":fib_exec,
+    "PENTAGONAL":pentagonal,
+    "PENT":pentagonal,
+    "HEX":hexa,
+    "HEXAGONAL":hexa,
+    # "LAZYC":caterer,
+    # "CATERER":caterer,
+    "WDEMLO":wdemlo,
+}
+
+def ah(s):
+    return "Same as "+s
+
+helps = {
+    "ODD":"Odd numbers",
+    "EVEN":"Even numbers",
+    "SQUARE":"Square numbers",
+    "SQ":ah("SQ"),
+    "TRIANGULAR":"Triangular numbers",
+    "TRIAN":ah("TRIANGULAR"),
+    "FIB":"Fibonacci sequences",
+    "FIBONACCI":ah("FIB"),
+    "PENTAGONAL":"Pentagonal numbers",
+    "PENT":ah("PENTAGONAL"),
+    "HEX":ah("HEX"),
+    "HEXAGONAL":"Hexagonal numbers",
+    # "LAZYC":"WIP",
+    # "CATERER":"WIP,
+    "WDEMLO":"Wonderful Demlo numbers",
 }
