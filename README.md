@@ -10,9 +10,18 @@ All commands have a `:` prefix.
    - `rl <limit>`  Set recursion limit
  - `:q` Quit
 ### Sequences
-Use `:h` command to get a list of sequences. Use `SEQUENCE_NAME n` to get the *n*th of the sequence. Note that the `SEQUENCE_NAME` is capical.
+Use `:h` command to get a list of sequences. Use `SEQUENCE_NAME n` to get the *n*th of the sequence.
 
 ## Keyboard Shortcut
  - `^C KeyboardInterrupt`: Interrupt
  - `^D EOFError`: Quit (Not working on Windows)
- - `Up key`: Last execution (Not working on Linux, tested on Windows Anaconda)git
+ - `Up key`: Last execution (Not working on Linux, tested on Windows Anaconda)
+
+## API
+### Sequences API
+all sequences are under `modules.seq`
+### Exceptions
+#### `modules.seq.SequenceInterrupt(reason=None)`
+Interrupt the current sequence calcuate (toggle by the sequence calcuater)
+#### `__main__.JustForTestingError()`
+Test the resopnse when an error happend (toggle by `:e` command)

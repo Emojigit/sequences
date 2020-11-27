@@ -1,4 +1,13 @@
 import math, sys
+
+class SequenceInterrupt(BaseException):
+    def __init__(self,reason=None):
+        if reason == None:
+            msg = "Sequence calcuate interrupted!"
+        else:
+            msg = "Sequence calcuate interrupted because "+reason
+        print(msg)
+
 mpow = math.pow
 def odd(n):
     return (2*n)-1
@@ -27,7 +36,7 @@ def fib_exec(n):
     try:
         return fib(fn)
     except RecursionError:
-        return "maximum recursion depth exceeded in comparison! (max:"+str(sys.getrecursionlimit())+")"
+        raise SequenceInterrupt("maximum recursion depth exceeded in comparison! (max:"+str(sys.getrecursionlimit())+")")
 
 def pentagonal(n):
     fn = float(n)
@@ -55,11 +64,16 @@ def div2(n):
         return div2(n-1)/2
 
 def div2_exec(n):
+    #if (n-5) > sys.getrecursionlimit():
+    #    raise SequenceInterrupt()
     try:
         return div2(n)
     except RecursionError:
-        return "maximum recursion depth exceeded in comparison! (max:"+str(sys.getrecursionlimit())+")"
+        raise SequenceInterrupt("maximum recursion depth exceeded in comparison! (max:"+str(sys.getrecursionlimit())+")")
 
+
+
+# Register sequences
 seqs = {
     "ODD":odd,
     "EVEN":even,

@@ -16,18 +16,28 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-from modules import seq, cpr_note
-import sys
+import sys, traceback, tempfile, os
+try:
+    from modules import seq, cpr_note
+except ImportError:
+    print("Modules not found, did you forgot to put it into the same folder as this program?")
+    sys.exit(128)
 exit = sys.exit
 cpr_note.show()
 seqs = seq.seqs
+debug = False
 
-print("Sequence Version alpha 1")
+class JustForTestingError(Exception):
+    pass
+
+print("Sequence Version v2.0.0")
 print("Type \":l\", \":h\" for more information.")
 while True:
     try:
         command = str(input("> ")).split(" ",1)
-        if command == []:
+        if debug == True:
+            print("[DEBUG] Issued command: "+str(command))
+        if command == [] or command == [""]:
             continue
         elif command[0] == ":h":
             print("List of sequences:")
@@ -40,6 +50,7 @@ while True:
             print("l == see license details")
             print("q == Quit")
             print("s == settings (Use `:s help` to get all settings)")
+            print("e == Raise an error (Dev tool)")
             print("Note: all commands have a `:` prefix")
             print("---------------------")
             print("Keyboard Shortcuts:")
@@ -59,6 +70,7 @@ while True:
             if args[0] == "help":
                 print("Subcommands of settings:")
                 print("rl: Set recursion limit")
+                print("debug: Extra debug informations")
                 continue
             try:
                 tmp = args[1]
@@ -76,17 +88,31 @@ while True:
                     print("Arg not int!")
                 except OverflowError:
                     print("Arg too big!")
+            elif args[0] == "debug":
+                if args[1] == "True" or args[1] == "true" or args[1] == "1":
+                    debug = True
+                elif args[1] == "False" or args[1] == "false" or args[1] == "0":
+                    debug = False
+                else:
+                    print("Invalid bollen")
             else:
                 print("Unknown setting")
+        elif command[0] == ":e":
+            raise JustForTestingError()
         elif command[0].startswith(":"):
             print("No such command")
         else:
             try:
-                sf = seqs[command[0]]
+                sf = seqs[command[0].upper()]
                 n = int(command[1])
                 if n <= 0:
                     raise ValueError
-                print("Result: "+str(sf(n)))
+                res = sf(n)
+                if debug == True:
+                    print("[DEBUG] Feedback type: "+str(type(res)))
+                print("Result: "+str(res))
+            except seq.SequenceInterrupt:
+                continue
             except IndexError:
                 print("Missing Arg: term(int)")
             except KeyError:
@@ -96,6 +122,21 @@ while True:
     except KeyboardInterrupt:
         print()
         pass
-    except EOFError:
+    # except EOFError:
+    #     print()
+    #     exit(1)
+    except SystemExit:
         print()
-        exit(1)
+        print("Bye")
+        sys.exit()
+    except Exception:
+        info = sys.exc_info()
+        #tmpdir = tempfile.mkdtemp()
+        #err_path = str(os.getpid())+"_sequences_err.txt"
+        #err_file = open(err_path,"w+")
+        print()
+        print("[ERROR] "+str(info[0]))
+        #err_file.write(traceback.print_tb(sys.exc_info()[2]))
+        #print("The error messages have been written into \""+err_path+"\"")
+        print("Please report this error to github.com/Emojigit/sequences/issues/new with what did you do before this error.")
+        raise
