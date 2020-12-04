@@ -30,6 +30,14 @@ debug = False
 class JustForTestingError(Exception):
     pass
 
+def screen_clear():
+    # for mac and linux(here, os.name is 'posix')
+    if os.name == 'posix':
+        _ = os.system('clear')
+    else:
+        # for windows platfrom
+        _ = os.system('cls')
+
 print("Sequence Version v2.0.0")
 print("Type \":l\", \":h\" for more information.")
 while True:
@@ -99,6 +107,8 @@ while True:
                 print("Unknown setting")
         elif command[0] == ":e":
             raise JustForTestingError()
+        elif command[0] == ":c":
+            screen_clear()
         elif command[0].startswith(":"):
             print("No such command")
         else:

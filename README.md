@@ -9,6 +9,7 @@ All commands have a `:` prefix.
    - `help` List all changable Settings
    - `rl <limit>`  Set recursion limit
  - `:q` Quit
+ - `:c` Clear the screen (supports posix, nt and DOS systems)
 ### Sequences
 Use `:h` command to get a list of sequences. Use `SEQUENCE_NAME n` to get the *n*th of the sequence.
 
