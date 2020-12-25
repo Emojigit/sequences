@@ -63,7 +63,7 @@ while True:
             print("---------------------")
             print("Keyboard Shortcuts:")
             print("^C: Interrupt")
-            print("^D: Quit (Not working on windows)")
+            #print("^D: Quit (Not working on windows)")
         elif command[0] == ":l":
             print("License under GNU GPLv3, see LICENSE.txt and COPYING.txt in the source code")
         elif command[0] == ":q":
