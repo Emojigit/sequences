@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 import sys, traceback, tempfile, os
 try:
-    from modules import seq, cpr_note
+    from modules import seq, cpr_note, errhandle
 except ImportError:
     print("Modules not found, did you forgot to put it into the same folder as this program?")
     sys.exit(128)
@@ -139,14 +139,12 @@ while True:
         print()
         print("Bye")
         sys.exit()
-    except Exception:
-        info = sys.exc_info()
+    except Exception as e:
+        #info = sys.exc_info()
         #tmpdir = tempfile.mkdtemp()
         #err_path = str(os.getpid())+"_sequences_err.txt"
         #err_file = open(err_path,"w+")
-        print()
-        print("[ERROR] "+str(info[0]))
+        errhandle.handler(e)
         #err_file.write(traceback.print_tb(sys.exc_info()[2]))
         #print("The error messages have been written into \""+err_path+"\"")
-        print("Please report this error to github.com/Emojigit/sequences/issues/new with what did you do before this error.")
         raise
